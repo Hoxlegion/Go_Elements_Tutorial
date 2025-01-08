@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"slices"
+	"testing"
+)
 
 func TestSum(t *testing.T) {
 
@@ -22,6 +25,17 @@ func TestSum(t *testing.T) {
 
         log(t, got, want, numbers)
     })
+}
+
+func TestSumAll(t *testing.T) {
+    result := SumAll([]int{1,2}, []int{0,9})
+    want := []int{3, 9}
+
+    if !slices.Equal[[]int](result, want) {
+        t.Errorf("got %d want %d", result, want)
+
+    }
+
 }
 
 func log(t *testing.T, got, want int, numbers []int) {
