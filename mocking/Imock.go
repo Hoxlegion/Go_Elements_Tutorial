@@ -10,7 +10,7 @@ type Sleeper interface {
 }
 
 type SpyTime struct {
-    durationSlept time.Duration
+	durationSlept time.Duration
 }
 
 type SpySleeper struct {
@@ -27,7 +27,7 @@ type ConfigureableSleeper struct {
 }
 
 func (s *SpyTime) Sleep(duration time.Duration) {
-    s.durationSlept = duration
+	s.durationSlept = duration
 }
 
 func (s *SpyCountDownOperations) Sleep() {
@@ -43,6 +43,10 @@ type DefaultSleeper struct{}
 
 func (d *DefaultSleeper) Sleep() {
 	time.Sleep(1 * time.Second)
+}
+
+func (c *ConfigureableSleeper) Sleep() {
+    c.sleep(c.duration)
 }
 
 func (s *SpySleeper) Sleep() {
